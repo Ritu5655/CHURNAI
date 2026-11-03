@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>ChurnAI - Customer Churn Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #prediction {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h2>ChurnAI</h2>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="#about">About</a>
+            <a href="#prediction">Predict</a>
+            <a href="#contact">contact</a>
+        </div>
+    </nav>
+
+
+    <!-- Home Section -->
+    <section class="hero" id="home">
+
+        <p>AI POWERED CUSTOMER ANALYTICS</p>
+
+        <h1>
+            Predict Customer Churn
+            <br>
+            With Machine Learning
+        </h1>
+
+        <p>
+            Understand your customers and discover
+            who may leave your service.
+        </p>
+
+        <button type="button" onclick="scrollToPrediction()">
+            Get Started →
+        </button>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about">
+
+        <h2>About ChurnAI</h2>
+
+        <p>
+            ChurnAI uses customer information and machine
+            learning to help predict customer churn.
+        </p>
+
+        <p>
+            Our goal is to help businesses understand
+            customer behaviour and improve customer retention.
+        </p>
+
+    </section>
+
+
+    <!-- Prediction Section -->
+    <section id="prediction">
+
+        <h2>Predict Customer Churn</h2>
+
+        <p>
+            Enter customer details to add a customer
+            to the database and predict churn.
+        </p>
+
+
+        <div class="prediction-card">
+
+            <h3>Customer Information</h3>
+
+
+            <!-- Customer Form -->
+            <form action="{{ url_for('add_customer') }}" method="POST">
+
+                <label for="customer_id"> Customer ID </label>
+
+                <input type="number" id="customer_id" name="customer_id" 
+                  placeholder="Enter customer ID" min="1" required>
+                
+
+
+                <label for="name"> Customer Name </label>
+
+                <input type="text" id="name" name="name" placeholder="Enter customer name" required>
+                
+                
+                <label for="age"> Age </label>
+
+                <input type="number" id="age" name="age" placeholder="Enter age" min="1" required>
+
+
+                <label for="city"> City </label>
+
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+
+
+                <label for="plan"> Plan </label>
+                 
+                <select id="plan" name="plan" required>
+
+                    <option value="">Select plan</option>
+
+                    <option value="Basic"> Basic </option>
+
+                    <option value="Premium"> Premium </option>
+
+                </select>
+
+
+                <label for="monthly_charge"> Monthly Charge </label>
+
+                <input type="number" step="1" id="monthly_charge" name="monthly_charge" 
+                  placeholder="Enter monthly charge" min="0" required>
+
+
+                <label for="tenure_months"> Tenure (Months) </label>
+
+                <input type="number" id="tenure_months" name="tenure_months"
+                   placeholder="Enter tenure in months" min="0" required>
+
+
+                <label for="contract_type"> Contract Type </label>
+
+                <select id="contract_type" name="contract_type" required>
+
+                    <option value=""> Select contract type </option>
+
+                    <option value="Monthly"> Monthly </option>
+
+                    <option value="Yearly"> Yearly </option>
+
+                </select>
+
+
+                <button type="submit"> Add Customer & Predict Churn </button>
+
+            </form>
+
+
+            <!-- Prediction Result -->
+            {% if prediction %}
+
+                <div class="prediction-result">
+
+                    <h3>Prediction Result</h3>
+
+                    <p> Customer: {{ customer_name }} </p>
+
+                    <h2>{{ prediction }}</h2>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section> 
+
+
+    
+<section>
+    
+    <footer class="footer" id="contact">
+        <h3>ChurnAI</h3>
+
+        <p>AI-POWERED CUSTOMER CHURN PREDICTION</p>
+            <h4>Contact Us</h4>
+
+            <p>Email: kusumsoni8632@gmail.com</p>
+            <p>Phone: +91 99992205655</p>
+
+            <p class="copyright">
+                &copy;2026 ChurnAI.All Rights Reserved
+            </p>
+    </footer>
+</section>
+
+
+   <!-- JavaScript -->
+    <script>
+
+        function scrollToPrediction() {
+
+            document.getElementById("prediction").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
